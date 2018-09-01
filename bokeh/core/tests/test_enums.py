@@ -221,6 +221,7 @@ def test_enums_contents():
         'RenderMode',
         'RoundingFunction',
         'SizingMode',
+        'SizingPolicy',
         'SliderCallbackPolicy',
         'SortDirection',
         'SpatialUnits',
@@ -231,6 +232,8 @@ def test_enums_contents():
         'TickLabelOrientation',
         'TooltipAttachment',
         'TooltipFieldFormatter',
+        'TrackAlign',
+        'TrackPolicy',
         'VerticalAlign',
         'VerticalLocation',
     ]
