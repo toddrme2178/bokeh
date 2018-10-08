@@ -29,6 +29,7 @@ import sys
 
 # Bokeh imports
 from bokeh.util.terminal import write
+from bokeh._version import get_versions
 
 #-----------------------------------------------------------------------------
 # Globals and constants
@@ -48,12 +49,10 @@ def version_from_git(ref):
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
         code = proc.wait()
     except OSError:
-        write("Failed to run: %s" % " ".join(cmd))
-        sys.exit(1)
+        OSError("Failed to run: %s" % " ".join(cmd))
 
     if code != 0:
-        write("Failed to get version for %s" % ref)
-        sys.exit(1)
+        OSError("Failed to get version for %s" % ref)
 
     version = proc.stdout.read().decode('utf-8').strip()
 
@@ -77,4 +76,8 @@ def version_from_git(ref):
 # Code
 #-----------------------------------------------------------------------------
 
-__version__ = version_from_git('HEAD')
+try:
+    __version__ = version_from_git('HEAD')
+except OSError:
+    __version__ = get_versions()['version']
+
